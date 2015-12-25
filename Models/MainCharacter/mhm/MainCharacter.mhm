@@ -1,0 +1,31 @@
+# Written by MakeHuman 1.0.2
+version v1.0.2
+tags Models
+face head-age-less-more 1.000000
+face head-angle-in-out -0.468000
+face head-rectangular 0.137000
+hair mhair02 f81a4e9a-e3d7-4ecb-bdf0-16d7fd9070a4
+eyebrows Eyebrow012 1c16325c-7831-4166-831a-05c5b609c219
+eyes HighPolyEyes 2c12f43b-1303-432c-b7ce-d78346baf2e6
+clothes shoes02 8887caca-d6fb-4d73-af10-1d4fb740a936
+clothes jeans01 faa58a00-05db-4a53-a3a6-72af1cec2053
+clothesHideFaces True
+gendered BreastFirmness 0.500000
+gendered BreastSize 0.500000
+macro Weight 0.500000
+macro Gender 1.000000
+macro Age 0.532000
+macro Height 0.000000
+macro Asian 0.072388
+macro African 0.088612
+macro Caucasian 0.839000
+macro Muscle 1.000000
+macro BodyProportions 0.500000
+background enabled False
+skinMaterial skins/default.mhmat
+material jeans01 faa58a00-05db-4a53-a3a6-72af1cec2053 clothes/jeans01/jeans01_black_leather.mhmat
+material shoes02 8887caca-d6fb-4d73-af10-1d4fb740a936 clothes/shoes02/materials/shoes02_default.mhmat
+material mhair02 f81a4e9a-e3d7-4ecb-bdf0-16d7fd9070a4 hair/mhair02/materials/male02_black.mhmat
+material HighPolyEyes 2c12f43b-1303-432c-b7ce-d78346baf2e6 eyes/materials/brown.mhmat
+skeleton game.json
+subdivide False

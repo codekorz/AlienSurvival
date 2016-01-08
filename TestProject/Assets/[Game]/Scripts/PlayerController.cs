@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Animation(float h, float v)
 	{
+        
 		m_animator.SetBool("punch", false);
 		if (!m_animator.GetCurrentAnimatorStateInfo (0).IsName ("Punch")) {
 			m_animator.SetBool ("punch", Input.GetKey (KeyCode.Space));

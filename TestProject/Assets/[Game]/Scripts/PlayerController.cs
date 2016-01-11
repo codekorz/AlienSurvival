@@ -27,22 +27,24 @@ public class PlayerController : MonoBehaviour {
 
 	void Animation(float h, float v)
 	{
-        
+		m_animator.SetBool("walking", (v != 0));
+		m_animator.SetFloat("walkDirection", v);
 		m_animator.SetBool("punch", false);
 		if (!m_animator.GetCurrentAnimatorStateInfo (0).IsName ("Punch")) {
 			m_animator.SetBool ("punch", Input.GetKey (KeyCode.Space));
 		}
 		if (Input.GetKeyDown (KeyCode.LeftShift) && v > 0) {
-			m_animator.Play ("Run");
-			//m_animator.SetBool ("running", true);
-			m_speed = m_runSpeed;
+			if (!m_animator.GetCurrentAnimatorStateInfo (0).IsName ("Run") && !m_animator.IsInTransition(0)) {
+				//m_animator.Play ("Run");
+				m_animator.SetBool ("running", true);
+				m_speed = m_runSpeed;
+			}
 		}
 		if (Input.GetKeyUp (KeyCode.LeftShift)) {
-			//m_animator.SetBool ("running", false);
+			m_animator.SetBool ("running", false);
+			//m_animator.Play("Idle");
 			m_speed = m_defaultSpeed;
 		}
-        m_animator.SetBool("walking", (v != 0));
-        m_animator.SetFloat("walkDirection", v);
 	}
 
 	void Move(float h, float v) {

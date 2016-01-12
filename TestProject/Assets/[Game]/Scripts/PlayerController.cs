@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+enum PlayerStatus {Idle, Move, Punch};
+
 public class PlayerController : MonoBehaviour {
 	public float m_defaultSpeed = 20f;
 	public float m_runSpeed = 40f;
@@ -9,8 +11,10 @@ public class PlayerController : MonoBehaviour {
 	private CharacterController m_charController;
 	private Vector3 m_moveDirection = Vector3.zero;
 	private float m_speed;
+    private PlayerStatus m_status;
 	// Use this for initialization
 	void Start () {
+        m_status = PlayerStatus.Idle;
 		m_speed = m_defaultSpeed;
 	   	m_animator = GetComponent<Animator>();
 		m_charController = GetComponent<CharacterController> ();
@@ -21,30 +25,34 @@ public class PlayerController : MonoBehaviour {
         float horizontal = Input.GetAxisRaw ("Horizontal");
 		float vertical = Input.GetAxisRaw ("Vertical");
 
+        if (vertical != 0) {
+            m_status = PlayerStatus.Move;
+            if(vertical > 0 && Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                m_speed = m_runSpeed;
+            }
+            else if(Input.GetKeyUp(KeyCode.LeftShift) || vertical < 0)
+            {
+                m_speed = m_defaultSpeed;
+            }
+        }
+        else m_status = PlayerStatus.Idle;
+        if (Input.GetKey(KeyCode.Space) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
+            m_status = PlayerStatus.Punch;
+        
 		Animation(horizontal, vertical);
 		Move (horizontal, vertical);
-	}
+
+        Debug.Log("V: " + vertical + "Status: " + m_status.ToString());
+    }
 
 	void Animation(float h, float v)
 	{
-		m_animator.SetBool("walking", (v != 0));
-		m_animator.SetFloat("walkDirection", v);
-		m_animator.SetBool("punch", false);
-		if (!m_animator.GetCurrentAnimatorStateInfo (0).IsName ("Punch")) {
-			m_animator.SetBool ("punch", Input.GetKey (KeyCode.Space));
-		}
-		if (Input.GetKeyDown (KeyCode.LeftShift) && v > 0) {
-			if (!m_animator.GetCurrentAnimatorStateInfo (0).IsName ("Run") && !m_animator.IsInTransition(0)) {
-				//m_animator.Play ("Run");
-				m_animator.SetBool ("running", true);
-				m_speed = m_runSpeed;
-			}
-		}
-		if (Input.GetKeyUp (KeyCode.LeftShift)) {
-			m_animator.SetBool ("running", false);
-			//m_animator.Play("Idle");
-			m_speed = m_defaultSpeed;
-		}
+        m_animator.SetFloat("speed", m_speed);
+        m_animator.SetFloat("walkDirection", v);
+        m_animator.SetBool("move", (m_status == PlayerStatus.Move));
+		m_animator.SetBool("punch", (m_status == PlayerStatus.Punch));
+
 	}
 
 	void Move(float h, float v) {

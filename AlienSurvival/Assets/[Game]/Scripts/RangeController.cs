@@ -17,16 +17,10 @@ public class RangeController : MonoBehaviour {
         m_inrange = false;
     }
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
     void OnTriggerEnter(Collider collider) {
 
         if (collider.gameObject.name == "MainCharacter")
         {
-            Debug.Log("Ha entrado el personaje");
             m_inrange = false;
         }
     }
@@ -35,7 +29,6 @@ public class RangeController : MonoBehaviour {
     {
         if (collider.gameObject.name == "MainCharacter")
         {
-            Debug.Log("Está el personaje en el rango del Alien");
             m_inrange = true;
         }
     }
@@ -44,7 +37,6 @@ public class RangeController : MonoBehaviour {
     {
         if (collider.gameObject.name == "MainCharacter")
         {
-            Debug.Log("Ha salido el personaje");
             m_inrange = false;
         }
     }

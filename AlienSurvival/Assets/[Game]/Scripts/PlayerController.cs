@@ -48,8 +48,6 @@ public class PlayerController : MonoBehaviour {
         
 		Animation(horizontal, vertical);
 		Move (horizontal, vertical);
-
-        Debug.Log("V: " + vertical + "Status: " + m_status.ToString());
     }
 
 	void Animation(float h, float v)

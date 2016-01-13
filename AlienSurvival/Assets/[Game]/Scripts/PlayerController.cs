@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-enum PlayerStatus {Idle, Move, Punch};
+enum PlayerStatus {Idle, Move, Punch, Kick};
 
 public class PlayerController : MonoBehaviour {
-	public float m_defaultSpeed = 20f;
-	public float m_runSpeed = 40f;
+	public float m_walkSpeed = 30f;
+	public float m_runSpeed = 45f;
+	public float m_sprintSpeed = 60f;
 	public float m_gravity = -9.8f;
 	private Animator m_animator;
 	private CharacterController m_charController;
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         m_status = PlayerStatus.Idle;
-		m_speed = m_defaultSpeed;
+		m_speed = m_walkSpeed;
 	   	m_animator = GetComponent<Animator>();
 		m_charController = GetComponent<CharacterController> ();
 	}
@@ -27,17 +28,22 @@ public class PlayerController : MonoBehaviour {
 
         if (vertical != 0) {
             m_status = PlayerStatus.Move;
-            if(vertical > 0 && Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                m_speed = m_runSpeed;
+			if(vertical > 0)
+			{
+				if(Input.GetKeyDown(KeyCode.LeftShift))
+               		m_speed = m_runSpeed;
+				if (Input.GetKeyDown (KeyCode.Space) && m_speed >= m_runSpeed)
+					m_speed = m_sprintSpeed;
             }
-            else if(Input.GetKeyUp(KeyCode.LeftShift) || vertical < 0)
+			if (Input.GetKeyUp (KeyCode.Space))
+				m_speed = m_runSpeed;
+            if(Input.GetKeyUp(KeyCode.LeftShift) || vertical < 0)
             {
-                m_speed = m_defaultSpeed;
+                m_speed = m_walkSpeed;
             }
         }
         else m_status = PlayerStatus.Idle;
-        if (Input.GetKey(KeyCode.Space) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
+        if (Input.GetKey(KeyCode.Mouse0) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
             m_status = PlayerStatus.Punch;
         
 		Animation(horizontal, vertical);
@@ -56,12 +62,14 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Move(float h, float v) {
-        if (m_charController.isGrounded) {
+		if (m_charController.isGrounded) {
             if(h != 0 && v != 0)
             {
                 m_moveDirection = new Vector3(h, 0, v);
             }
             else { m_moveDirection = new Vector3(0, 0, v); }
+			if (m_status != PlayerStatus.Move)
+				m_moveDirection = Vector3.zero;
             m_moveDirection = transform.TransformDirection(m_moveDirection);
             m_moveDirection *= m_speed;
         }

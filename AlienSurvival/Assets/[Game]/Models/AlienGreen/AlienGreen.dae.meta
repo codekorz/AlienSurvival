@@ -187,7 +187,9 @@ ModelImporter:
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths: []
+    extraExposedTransformPaths:
+    - python/hips/spine/spine-1/chest/chest-1/clavicle_L/deltoid_L/upper_arm_L
+    - python/hips/spine/spine-1/chest/chest-1/clavicle_R/deltoid_R/upper_arm_R
     clipAnimations: []
     isReadable: 1
   meshes:

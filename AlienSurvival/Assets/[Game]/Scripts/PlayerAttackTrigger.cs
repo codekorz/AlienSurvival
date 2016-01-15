@@ -10,8 +10,9 @@ public class PlayerAttackTrigger : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.tag == "Enemy" && m_PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
-            Destroy(collider.gameObject);
+		if (collider.tag == "Enemy" && m_PlayerAnimator.GetCurrentAnimatorStateInfo (0).IsName ("Punch")) {
+			Destroy (collider.gameObject);
+		}
     }
 
 }

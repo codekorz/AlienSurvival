@@ -46,4 +46,15 @@ public class LifePlayerController : MonoBehaviour {
             vidasActuales--;
         }
     }
+
+    public void ganarVida()
+    {
+        if (vidasActuales < 3)
+        {
+            vidasActuales++;
+            heart[vidasActuales - 1].enabled = true;
+            
+        }
+    }
+
 }

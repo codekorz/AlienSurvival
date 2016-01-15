@@ -19,7 +19,7 @@ public class RangeController : MonoBehaviour {
 	
     void OnTriggerEnter(Collider collider) {
 
-        if (collider.gameObject.name == "MainCharacter")
+        if (collider.gameObject.name == "Player")
         {
             m_inrange = true;
         }
@@ -27,7 +27,7 @@ public class RangeController : MonoBehaviour {
 
     void OnTriggerStay(Collider collider)
     {
-        if (collider.gameObject.name == "MainCharacter")
+        if (collider.gameObject.name == "Player")
         {
             m_inrange = true;
         }
@@ -35,7 +35,7 @@ public class RangeController : MonoBehaviour {
 
     void OnTriggerExit(Collider collider)
     {
-        if (collider.gameObject.name == "MainCharacter")
+        if (collider.gameObject.name == "Player")
         {
             m_inrange = false;
         }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class LifePlayerController : MonoBehaviour {
@@ -20,11 +21,8 @@ public class LifePlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-       /* if (Input.GetKeyDown(KeyCode.P))
-        {
-            heart[vidasActuales - 1].enabled = false;
-            vidasActuales--;
-        }*/
+        if (vidasActuales == 0)
+            SceneManager.LoadScene("GameScene");
     }
 
     public void perderVida()

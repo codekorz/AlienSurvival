@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 		m_speed = m_walkSpeed;
 	   	m_animator = GetComponent<Animator>();
 		m_charController = GetComponent<CharacterController> ();
+		//m_animator.speed = 1.2f;
 	}
 
 	void FixedUpdate () {
@@ -29,23 +30,29 @@ public class PlayerController : MonoBehaviour {
         if (vertical != 0) {
             m_status = PlayerStatus.Move;
 			if(vertical > 0)
-			{
-				if(Input.GetKeyDown(KeyCode.LeftShift))
-               		m_speed = m_runSpeed;
-				if (Input.GetKeyDown (KeyCode.Space) && m_speed >= m_runSpeed)
+			{/*
+				if (Input.GetKeyDown (KeyCode.LeftShift))
+					m_speed = m_runSpeed;
+				else if (Input.GetKeyDown (KeyCode.Space) && m_speed >= m_runSpeed)
 					m_speed = m_sprintSpeed;
+				else
+					m_speed = m_walkSpeed;*/
+				if (Input.GetKey (KeyCode.Space) && Input.GetKey (KeyCode.LeftShift))
+					m_speed = m_sprintSpeed;
+				else if (Input.GetKey(KeyCode.LeftShift))
+					m_speed = m_runSpeed;
+				else
+					m_speed = m_walkSpeed;
             }
-			if (Input.GetKeyUp (KeyCode.Space))
-				m_speed = m_runSpeed;
-            if(Input.GetKeyUp(KeyCode.LeftShift) || vertical < 0)
-            {
-                m_speed = m_walkSpeed;
-            }
+
         }
-        else m_status = PlayerStatus.Idle;
+        else 
+			m_status = PlayerStatus.Idle;
+
         if (Input.GetKey(KeyCode.Mouse0) && !m_animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
             m_status = PlayerStatus.Punch;
-        
+
+
 		Animation(horizontal, vertical);
 		Move (horizontal, vertical);
     }

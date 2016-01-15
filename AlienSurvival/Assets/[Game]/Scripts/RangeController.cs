@@ -21,7 +21,7 @@ public class RangeController : MonoBehaviour {
 
         if (collider.gameObject.name == "MainCharacter")
         {
-            m_inrange = false;
+            m_inrange = true;
         }
     }
 

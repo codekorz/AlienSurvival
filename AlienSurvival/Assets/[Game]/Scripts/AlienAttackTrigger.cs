@@ -8,7 +8,6 @@ public class AlienAttackTrigger : MonoBehaviour {
     void Start()
     {
         m_animator = transform.root.GetComponent<Animator>();
-         
     }
 	void OnTriggerEnter(Collider collider)
 	{

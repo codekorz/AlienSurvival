@@ -5,13 +5,16 @@ public class PlayerAttackTrigger : MonoBehaviour {
 
     void Start()
     {
-        m_PlayerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+        m_PlayerAnimator = transform.root.GetComponent<Animator>(); //GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+
     }
 
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.tag == "Enemy" && m_PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
+
+        if (collider.tag == "Enemy")
             Destroy(collider.gameObject);
+
     }
 
 }

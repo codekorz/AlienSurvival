@@ -16,8 +16,8 @@ public class LifePlayerController : MonoBehaviour {
         vidasActuales = vidasIniciales;
         puntuacion = 0;
         heart = GameObject.Find("Lifes").GetComponentsInChildren<RawImage>();
-        //gameOver = GameObject.Find("GameOver").GetComponent<RawImage>();
-        //gameOver.enabled = false;
+        gameOver = GameObject.Find("GameOver").GetComponent<RawImage>();
+        gameOver.enabled = false;
         
         // corazones = Texture2D.get        
     }
@@ -27,7 +27,7 @@ public class LifePlayerController : MonoBehaviour {
         if (vidasActuales == 0)
         {
             Time.timeScale = 0;
-            //gameOver.enabled = true;
+            gameOver.enabled = true;
             //async = SceneManager.LoadSceneAsync("GameScene");
             //async.allowSceneActivation = false;
             if (Input.anyKey /*|| async.progress >= 0.9*/)
@@ -35,7 +35,6 @@ public class LifePlayerController : MonoBehaviour {
                 //async.allowSceneActivation = true;
                 SceneManager.LoadScene("GameScene");
             }
-
         }
     }
 

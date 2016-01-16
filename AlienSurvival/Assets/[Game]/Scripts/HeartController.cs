@@ -2,21 +2,18 @@
 using System.Collections;
 
 public class HeartController : MonoBehaviour {
-
+    public float m_rotateSpeed = 40f;
     private GameObject heart;
-    float x = 0;
     private LifePlayerController m_life;
 	// Use this for initialization
 	void Start () {
         heart = transform.parent.gameObject;
         m_life = GameObject.FindGameObjectWithTag("Player").GetComponent<LifePlayerController>();
-
     }
 
     // Update is called once per frame
     void Update () {
-        //transform.Translate(0,x,0);
-        //x = x + 1;
+        transform.Rotate(0, 0, m_rotateSpeed * Time.deltaTime);
 	}
 
     void OnTriggerEnter(Collider collider) {

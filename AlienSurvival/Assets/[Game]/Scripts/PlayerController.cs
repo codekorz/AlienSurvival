@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	public float m_runSpeed = 45f;
 	public float m_sprintSpeed = 60f;
 	public float m_gravity = -9.8f;
+    public float m_rotateSpeed = 50f;
 	private Animator m_animator;
 	private CharacterController m_charController;
 	private Vector3 m_moveDirection = Vector3.zero;
@@ -23,10 +24,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-        transform.Rotate(0, Input.GetAxisRaw("Horizontal") * 60 * Time.deltaTime, 0);
+        float y_rotation = 0;
+        y_rotation += Input.GetAxisRaw("Horizontal") * m_rotateSpeed * Time.deltaTime;
+        y_rotation += Input.GetAxis("Mouse X") * m_rotateSpeed * Time.deltaTime;
+        transform.Rotate(0, y_rotation, 0);
         float horizontal = Input.GetAxisRaw ("Horizontal");
 		float vertical = Input.GetAxisRaw ("Vertical");
-
         if (vertical != 0) {
             m_status = PlayerStatus.Move;
 			if(vertical > 0)

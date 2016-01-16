@@ -13,6 +13,5 @@ public class StartScript : MonoBehaviour {
 			SceneManager.UnloadScene ("StartScene");
 			Destroy (gameObject);
 		}
-		Debug.Log ("Update");
 	}
 }

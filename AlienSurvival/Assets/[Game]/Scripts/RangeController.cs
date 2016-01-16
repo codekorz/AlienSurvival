@@ -35,7 +35,7 @@ public class RangeController : MonoBehaviour {
 
     void OnTriggerExit(Collider collider)
     {
-        if (collider.gameObject.name == "Player")
+        if (collider.tag == "Player")
         {
             m_inrange = false;
         }

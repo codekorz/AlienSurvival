@@ -22,35 +22,46 @@ public class LifePlayerController : MonoBehaviour {
         // corazones = Texture2D.get        
     }
 	
-	// Update is called once per frame
 	void Update () {
-        if (vidasActuales == 0)
-        {
-            Time.timeScale = 0;
-            gameOver.enabled = true;
-            if (Input.anyKey)
-            {
-                SceneManager.LoadScene("StartScene");
-            }
-        }
-    }
 
-    public void perderVida()
-    {
-        if (vidasActuales > 0)
-        {
-            heart[vidasActuales - 1].enabled = false;
-            vidasActuales--;
-        }
-    }
+		checkLifes ();
+	}
 
-    public void ganarVida()
-    {
-        if (vidasActuales < 3)
-        {
-            vidasActuales++;
-            heart[vidasActuales - 1].enabled = true;
-        }
-    }
+	public void perderVida()
+	{
+		if (vidasActuales > 0)
+		{
+			heart[vidasActuales - 1].enabled = false;
+			vidasActuales--;
+		}
+		checkLifes ();
+	}
+
+
+	public void ganarVida()
+	{
+		if (vidasActuales < 3)
+		{
+			vidasActuales++;
+			heart[vidasActuales - 1].enabled = true;
+
+		}
+	}
+
+	private void checkLifes()
+	{
+		if (vidasActuales == 0)
+		{
+			Time.timeScale = 0;
+			gameOver.enabled = true;
+			//async = SceneManager.LoadSceneAsync("GameScene");
+			//async.allowSceneActivation = false;
+			if (Input.anyKey /*|| async.progress >= 0.9*/)
+			{
+				//async.allowSceneActivation = true;
+				SceneManager.LoadScene("GameScene");
+			}
+		}
+	}
 
 }

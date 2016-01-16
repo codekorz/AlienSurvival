@@ -23,6 +23,7 @@ public class LifePlayerController : MonoBehaviour {
     }
 	
 	void Update () {
+
 		checkLifes ();
 	}
 
@@ -35,6 +36,7 @@ public class LifePlayerController : MonoBehaviour {
 		}
 		checkLifes ();
 	}
+
 
 	public void ganarVida()
 	{

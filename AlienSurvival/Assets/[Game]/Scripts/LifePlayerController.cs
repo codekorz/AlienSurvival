@@ -33,7 +33,7 @@ public class LifePlayerController : MonoBehaviour {
             if (Input.anyKey /*|| async.progress >= 0.9*/)
             {
                 //async.allowSceneActivation = true;
-                SceneManager.LoadScene("GameScene");
+                SceneManager.LoadScene("StartScene");
             }
         }
     }

@@ -28,11 +28,8 @@ public class LifePlayerController : MonoBehaviour {
         {
             Time.timeScale = 0;
             gameOver.enabled = true;
-            //async = SceneManager.LoadSceneAsync("GameScene");
-            //async.allowSceneActivation = false;
-            if (Input.anyKey /*|| async.progress >= 0.9*/)
+            if (Input.anyKey)
             {
-                //async.allowSceneActivation = true;
                 SceneManager.LoadScene("StartScene");
             }
         }
@@ -53,7 +50,6 @@ public class LifePlayerController : MonoBehaviour {
         {
             vidasActuales++;
             heart[vidasActuales - 1].enabled = true;
-            
         }
     }
 

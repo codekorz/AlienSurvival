@@ -53,7 +53,7 @@ public class AlienController : MonoBehaviour {
 				m_agent.destination = m_target.position;
 			transform.LookAt (m_target);
 
-			if (m_agent.remainingDistance > 0 && m_agent.remainingDistance <= 14) {
+			if (m_agent.remainingDistance > 0 && m_agent.remainingDistance <= 11) {
 				if (!m_animator.GetCurrentAnimatorStateInfo (0).IsName ("Attack"))
 					m_animator.SetTrigger ("attack");
 			}

@@ -18,7 +18,10 @@ public class EnemiesSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         Transform waypoint;
+        m_actualNumberOfBlue = GameObject.FindGameObjectsWithTag("AlienBlue").Length;
+        m_actualNumberOfGreen = GameObject.FindGameObjectsWithTag("AlienGreen").Length;
 	    if(m_actualNumberOfGreen < m_numberAlienGreen)
         {
             waypoint = m_waypoints.GetChild(Random.Range(0, m_waypoints.childCount-1));

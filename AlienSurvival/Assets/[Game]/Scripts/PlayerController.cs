@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour {
     private PlayerStatus m_status;
 	// Use this for initialization
 	void Start () {
+		//hide cursor
+		Cursor.visible = false;
         m_status = PlayerStatus.Idle;
 		m_speed = m_walkSpeed;
 	   	m_animator = GetComponent<Animator>();

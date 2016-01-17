@@ -6,7 +6,7 @@ using System.Collections;
 public class LifePlayerController : MonoBehaviour {
     private AsyncOperation async;
     public int vidasIniciales = 3;
-    public int vidasActuales = -1;
+    public int vidasActuales;
     public int puntuacion = 0;
     public RawImage[] heart;
     public RawImage gameOver;

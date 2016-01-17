@@ -15,14 +15,14 @@ public class AlienController : MonoBehaviour {
     private NavMeshAgent m_agent;
     private Animator m_animator;
 	private Transform m_waypoints;
+    private Transform m_target;
 
-    public Transform m_target;
 
     void Start () {
         m_animator = GetComponent<Animator>();
         m_range = transform.FindChild("Sensor").GetComponent<RangeController>();
 		m_agent = GetComponent<NavMeshAgent>();
-
+        m_target = GameObject.FindGameObjectWithTag("Player").transform;
 		//Para movimiento random
 		m_waypoints = GameObject.Find ("Waypoints").transform;
 		m_minWaypoint = 0;
@@ -43,9 +43,9 @@ public class AlienController : MonoBehaviour {
 				m_animator.SetFloat ("speed", 40.0f);
 				// Ajusta velocidad de movimiento y de la animación
 				
-				if (transform.name == "AlienBlue") 
+				if (transform.tag == "AlienBlue") 
 					m_agent.speed = 40f;
-				else if (transform.name == "AlienGreen")
+				else if (transform.tag == "AlienGreen")
 					m_agent.speed = 30f;
 			}
 

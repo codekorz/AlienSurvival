@@ -13,13 +13,12 @@ public class HeartController : MonoBehaviour {
     private int m_maxWaypoint;
     private int m_minWaypoint;
     private int m_waypointSearched;
-
-
+    private LivesSpawn m_livesSpawn;
     // Use this for initialization
     void Start () {
         //heart = transform.gameObject;
         m_life = GameObject.FindGameObjectWithTag("Player").GetComponent<LifePlayerController>();
-
+        m_livesSpawn = GameObject.Find("Scripts").GetComponent<LivesSpawn>();
         m_waypoints = GameObject.Find("Waypoints").transform;
         m_minWaypoint = 0;
         m_maxWaypoint = m_waypoints.childCount;
@@ -41,6 +40,7 @@ public class HeartController : MonoBehaviour {
             Vector3 newpos = m_waypoints.GetChild(Random.Range(m_minWaypoint, m_maxWaypoint)).position;
             newpos.y = 4;
             transform.position = newpos;
+            m_livesSpawn.subtractLife();
             //transform.position = new Vector3(-134,y,73);
             //Destroy(heart);
         }

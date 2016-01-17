@@ -11,9 +11,8 @@ public class AlienAttackTrigger : MonoBehaviour {
         m_animator = transform.root.GetComponent<Animator>();
         m_life = GameObject.FindGameObjectWithTag("Player").GetComponent<LifePlayerController>();
     }
-	void OnTriggerEnter(Collider collider)
+	void OnTriggerExit(Collider collider)
 	{
-
         if (collider.tag == "Player" && m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             m_life.perderVida();

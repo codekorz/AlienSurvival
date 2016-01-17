@@ -26,7 +26,7 @@ public class AlienController : MonoBehaviour {
 		//Para movimiento random
 		m_waypoints = GameObject.Find ("Waypoints").transform;
 		m_minWaypoint = 0;
-		m_maxWaypoint = m_waypoints.childCount;
+		m_maxWaypoint = m_waypoints.childCount -1;
 		m_waypointSearched = Random.Range (m_minWaypoint, m_maxWaypoint);
 		m_agent.destination = m_waypoints.GetChild(m_waypointSearched).position;
 		m_agent.speed = 10f;

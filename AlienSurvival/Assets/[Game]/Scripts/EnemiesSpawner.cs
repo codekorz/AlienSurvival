@@ -21,7 +21,7 @@ public class EnemiesSpawner : MonoBehaviour {
         Transform waypoint;
 	    if(m_actualNumberOfGreen < m_numberAlienGreen)
         {
-            waypoint = m_waypoints.GetChild(Random.Range(0, m_waypoints.childCount));
+            waypoint = m_waypoints.GetChild(Random.Range(0, m_waypoints.childCount-1));
             Instantiate(m_AlienGreenPrefab, waypoint.position, Quaternion.identity);
             m_actualNumberOfGreen++;
         }

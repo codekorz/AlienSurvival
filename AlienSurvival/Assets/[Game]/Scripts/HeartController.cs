@@ -16,12 +16,13 @@ public class HeartController : MonoBehaviour {
     private LivesSpawn m_livesSpawn;
     // Use this for initialization
     void Start () {
+        Random.seed = (int)System.DateTime.Now.Ticks;
         //heart = transform.gameObject;
         m_life = GameObject.FindGameObjectWithTag("Player").GetComponent<LifePlayerController>();
         m_livesSpawn = GameObject.Find("Scripts").GetComponent<LivesSpawn>();
         m_waypoints = GameObject.Find("Waypoints").transform;
         m_minWaypoint = 0;
-        m_maxWaypoint = m_waypoints.childCount;
+        m_maxWaypoint = m_waypoints.childCount-1;
         m_waypointSearched = Random.Range(m_minWaypoint, m_maxWaypoint);
         transform.position = m_waypoints.GetChild(m_waypointSearched).position;
 
